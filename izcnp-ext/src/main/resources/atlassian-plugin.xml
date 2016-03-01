@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="izcnp-ext"/>
+  <!-- add our web resources -->
+  <web-resource key="izcnp-ext-resources" name="izcnp-ext Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="izcnp-ext.css" location="/css/izcnp-ext.css"/>
+    <resource type="download" name="izcnp-ext.js" location="/js/izcnp-ext.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>izcnp-ext</context>
+  </web-resource>
+  <web-item key="import_issue_to_corporate" name="Import to Corporate Issue Page" section="operations-operations" weight="47">
+    <label>Import Issue to Corporate</label>
+    <link linkId="import_issue_to_corporate">/secure/ImportJiraIssueToCorporateAction.jspa?issueId=${issue.key}</link>
+    
+    <styleClass>aui-list-item-link issueaction-exportissue opsbar-operations</styleClass>
+  </web-item>
+  <webwork1 key="import-jira-issue-module" name="ImportJiraIssueModule" i18n-name-key="import-jira-issue-module.name">
+    <description key="import-jira-issue-module.description">The ImportJiraIssueModule Plugin</description>
+    <actions>
+      <action name="sysdev.izcnp.importwebwork.ImportJiraIssueToCorporateAction" alias="ImportJiraIssueToCorporateAction">
+        <view name="success">/templates/import-jira-issue-module/importjiraissuetocorporateaction/success.vm</view>
+        <view name="failure">/templates/import-jira-issue-module/importjiraissuetocorporateaction/failure.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+  <web-resource name="Import Issue To Corporate Web Resource" i18n-name-key="import-issue-to-corporate-web-resource.name" key="import-issue-to-corporate-web-resource">
+    <description key="import-issue-to-corporate-web-resource.description">The Import Issue To Corporate Web Resource Plugin</description>
+    <resource type="download" name="exportIssueDialog.js" location="js/exportIssueDialog.js">
+      <property key="content-type" value="text/javascript"/>
+    </resource>
+    <context>jira.general</context>
+  </web-resource>
+</atlassian-plugin>

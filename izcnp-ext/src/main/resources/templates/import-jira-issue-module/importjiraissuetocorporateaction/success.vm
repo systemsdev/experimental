@@ -1,0 +1,6 @@
+<div class="aui-message aui-message-success">
+    <p class="title">
+        <strong>Success!</strong>
+    </p>
+    <p>Issue has been sent to Corporate.</p>
+</div>
